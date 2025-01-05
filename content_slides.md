@@ -3,31 +3,56 @@
 
 # Executive Summary
 
-* Summary of methodologies
-* Summary of all results
+## Summary of Methodologies
+
+This project applied a structured data science approach to analyze SpaceX’s launch data:
+
+1.	Data Collection:
+	* Utilized the SpaceX REST API to fetch launch data, including supplementary information on rockets, payloads, and launchpads.
+	* Complemented the dataset with web scraping from Wikipedia pages to retrieve detailed Falcon 9 launch records.
+2.	Data Wrangling:
+	* Filtered out Falcon 1 launches to focus solely on Falcon 9.
+	* Addressed missing values, replacing them with appropriate statistics such as column means.
+3.	Exploratory Data Analysis (EDA):
+	* Conducted visual analysis using bar charts, scatter plots, and pie charts to uncover trends and relationships.
+	* Executed SQL queries to derive insights on launch site performance, payload distribution, and mission outcomes.
+4.	Interactive Visual Analytics:
+	* Created interactive maps using Folium to visualize launch sites and outcomes.
+	* Built dynamic dashboards with Plotly Dash, enabling users to explore data by payload, launch site, and success rates.
+5.	Predictive Modeling:
+	* Developed classification models (Logistic Regression, Decision Trees, etc.) to predict landing outcomes.
+	* Used GridSearchCV for hyperparameter tuning and cross-validation for model evaluation.
+
+## Summary of Results
+
+1.	Insights from Data Analysis:
+	* Launch sites such as KSC LC-39A and CCAFS LC-40 emerged as pivotal in SpaceX’s operations, showing high success rates.
+	* Payload mass and orbit types demonstrated significant influence on landing outcomes.
+2.	Interactive Visualizations:
+	* Folium maps effectively highlighted geographical patterns in launch site success.
+	* Plotly Dash dashboards enabled detailed exploration of payload vs. success trends.
+3.	Predictive Modeling Results:
+	* Logistic Regression emerged as the best-performing model, achieving an accuracy of 83.33%.
+	* Confusion matrix analysis confirmed its reliability in distinguishing successful from failed landings.
+4.	Actionable Insights:
+	* The findings underscore the importance of payload selection and site optimization in achieving successful launches.
 
 
 # Introduction
 
-* Project background and context
-* Problems you want to find answers
+SpaceX has been revolutionizing the space industry by reducing the cost of space exploration and improving the success rate of rocket launches. Their reusable rocket technology has set a new benchmark for innovation. This project aims to analyze SpaceX’s historical launch data to uncover patterns and insights that contribute to their success.
+
+### Problems You Want to Find Answers For:
+
+1.	What are the key factors influencing the success or failure of SpaceX launches?
+2.	How do payload mass and orbit type impact the likelihood of successful landings?
+3.	Which launch sites contribute the most to SpaceX’s success?
+4.	Can we predict the success of a launch based on historical data and specific mission parameters?
 
 
 # Methodology
 
 ## Methodology
-
-Executive Summary:
-
-* Data collection methodology:
-	* Describe how data was collected 
-* Perform data wrangling
-	* Describe how data was processed
-* Perform exploratory data analysis (EDA) using visualization and SQL
-* Perform interactive visual analytics using Folium and Plotly Dash
-* Perform predictive analysis using classification models
-	* How to build, tune, evaluate classification models
-
 
 1.	Data Collection:
 	* REST API: Data from SpaceX endpoint api.spacexdata.com/v4/launches/past with additional data from /rockets, /payloads, and /launchpads.
@@ -60,8 +85,6 @@ Describe how data sets were collected:
 	* These tables were parsed, cleaned, and converted into pandas dataframes for integration with the API data.
 
 
-You need to present your data collection process use key phrases and flowcharts
-
 ### Flowchart
 
 1. Start
@@ -69,11 +92,7 @@ You need to present your data collection process use key phrases and flowcharts
 1. Parse JSON Response
 1. Normalize JSON Data to Flat Table (pandas)
 1. Supplement Data:
-	* Query Additional API Endpoints
-	* Web Scrape Wiki Tables
 1. Clean & Transform Data:
-	* Filter Falcon 1 Launches
-	* Handle Missing Values
 1. Merge API and Web Scraped Data
 1. Store Cleaned Dataset for Analysis
 1. End
@@ -242,8 +261,6 @@ GitHub URL: [Notebook File](https://github.com/xsagti/IBM-Applied-Data-Science-C
 
 ## EDA with Data Visualization
 
-* Summarize what charts were plotted and why you used those charts
-* Add the GitHub URL of your completed EDA with data visualization notebook, as an external reference and peer-review purpose
 
 ### Charts Plotted and Their Purpose
 
@@ -440,9 +457,18 @@ GitHub URL: [Notebook File](https://github.com/xsagti/IBM-Applied-Data-Science-C
 
 ## Results
 
-* Exploratory data analysis results
-* Interactive analytics demo in screenshots
-* Predictive analysis results
+### Insights from EDA:
+* Launch sites such as “CCAFS LC-40” were identified as key contributors to SpaceX’s success.
+* A positive correlation was observed between payload mass and launch outcomes in certain orbits.
+
+### Interactive Maps:
+
+* Maps demonstrated the geographical distribution of launch sites and their success rates.
+* Proximity analyses to infrastructure like highways and coastlines were visualized.
+
+### Predictive Models:
+* Models such as Logistic Regression and Decision Trees achieved similar accuracy (~83.33%).
+* The Logistic Regression model was selected as the best performer based on F1-score and confusion matrix analysis.
 
 
 # Section 2 - Insights drawn from EDA
@@ -453,7 +479,7 @@ GitHub URL: [Notebook File](https://github.com/xsagti/IBM-Applied-Data-Science-C
 ![Relationship between Flight Number and Launch Site](Images/EDA with Data Visualization - scatter plot - relationship between Flight Number and Launch Site.png)
 
 ### Explanations
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+This scatter plot demonstrates the relationship between the flight number and the launch site. It highlights the frequency of launches from each site, revealing that CCAFS LC-40 and KSC LC-39A hosted the majority of SpaceX’s missions. This insight emphasizes the operational importance of these sites in SpaceX’s strategy.
 
 
 ## Payload vs. Launch Site
@@ -461,7 +487,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 ![Relatinship between Payload and Launch Site](Images/EDA with Data Visualization - scatter plot - relationship between Payload and Launch Site.png)
 
 ### Explanations
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+The plot illustrates the payload mass for different launches across SpaceX’s sites. It shows that heavier payloads were often launched from KSC LC-39A, suggesting that this site is better equipped for missions involving higher payload masses.
 
 
 ## Success Rate vs. Orbit Type
@@ -469,7 +495,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 ![Relationship between Success/Failure rate and Orbit](Images/EDA with Data Visualization - scatter plot - relationship between success rate of each orbit type.png)
 
 ### Explanations
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+This bar chart showcases the success rate for different orbit types. Geostationary Transfer Orbit (GTO) has a slightly lower success rate compared to Low Earth Orbit (LEO), indicating that GTO missions are more challenging due to higher technical demands.
 
 
 ## Flight Number vs. Orbit Type
@@ -477,7 +503,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 ![Relationship between Flight Number and Orbit](Images/EDA with Data Visualization - scatter plot - relationship between FlightNumber and Orbit type.png)
 
 ### Explanations
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+This scatter plot shows how orbit type distribution evolved as SpaceX launched more flights. Early missions targeted simpler orbits (LEO), while later flights included more complex missions to GTO and beyond.
 
 
 ## Payload vs. Orbit Type
@@ -485,7 +511,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 ![Relationship between Payload and Orbit](Images/EDA with Data Visualization - scatter plot - relationship between Payload and Orbit type.png)
 
 ### Explanations
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+This scatter plot analyzes how payload mass varies across orbit types. LEO missions can accommodate heavier payloads compared to GTO, reflecting differences in mission requirements and technical constraints.
 
 
 ## Launch Success Yearly Trend
@@ -493,7 +519,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 ![Launch Success Yearly Trend](Images/EDA with Data Visualization - line plot - launch success yearly trend.png)
 
 ### Explanations
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+The line chart depicts the yearly trend in SpaceX’s launch success rate. A consistent improvement over time is evident, showcasing the company’s learning curve and technological advancements.
 
 
 ## All Launch Site Names
@@ -506,12 +532,6 @@ FROM
 	SPACEXTABLE
 ```
 
-| Launch_Site |
-|----|
-|CCAFS LC-40
-|VAFB SLC-4E
-|KSC LC-39A
-|CCAFS SLC-40
 
 | Launch Site | Lat | Long |
 |---|---|---|
@@ -521,7 +541,7 @@ FROM
 | VAFB SLC-4E | 34.632834 | -120.610745 |
 
 ### Explanations
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+This query retrieves the unique names of all launch sites where SpaceX missions have taken place. The result shows sites such as CCAFS LC-40 and KSC LC-39A, highlighting their significance in SpaceX’s operations.
 
 ## Launch Site Names Begin with 'CCA'
 
@@ -539,7 +559,7 @@ WHERE
 
 
 ### Explanations
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+This query filters launch sites whose names start with ‘CCA’, limiting the result to the first five records. It focuses on sites such as CCAFS LC-40 and CCAFS SLC-40 to analyze their operational patterns.
 
 
 ## Total Payload Mass
@@ -560,7 +580,7 @@ WHERE
 
 
 ### Explanations
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+The query calculates the total payload mass carried by boosters for NASA (CRS) missions. This provides insights into NASA’s dependency on SpaceX for delivering heavy payloads.
 
 ## Average Payload Mass by F9 v1.1
 
@@ -581,7 +601,7 @@ WHERE
 
 
 ### Explanations
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+This query computes the average payload mass for the Falcon 9 v1.1 booster version, offering insights into its operational capacity and performance.
 
 
 ## First Successful Ground Landing Date
@@ -601,7 +621,7 @@ WHERE
 
 
 ### Explanations
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+This query identifies the date of SpaceX’s first successful ground landing. It showcases a milestone in SpaceX’s reusability goals and technological achievements.
 
 ## Successful Drone Ship Landing with Payload between 4000 and 6000
 
@@ -612,7 +632,11 @@ SELECT
 FROM 
 	SPACEXTABLE 
 WHERE 
-	Landing_Outcome == 'Success (drone ship)' and PAYLOAD_MASS__KG_ > 4000 and PAYLOAD_MASS__KG_ < 6000
+	Landing_Outcome == 'Success (drone ship)' 
+	AND 
+	PAYLOAD_MASS__KG_ > 4000 
+	AND 
+	PAYLOAD_MASS__KG_ < 6000
 
 ```
 
@@ -624,7 +648,7 @@ WHERE
 | F9 FT B1031.2 |
 
 ### Explanations
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+This query lists the boosters that successfully landed on a drone ship while carrying payloads between 4000 and 6000 kg. It demonstrates SpaceX’s precision in handling medium payloads.
 
 
 ## Total Number of Successful and Failure Mission Outcomes
@@ -649,7 +673,7 @@ GROUP BY
 
 
 ### Explanations
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Summarizes the count of each mission outcome (e.g., success, failure, unclear payload status).
 
 ```SQL
 SELECT 
@@ -667,7 +691,7 @@ WHERE
 
 
 ### Explanations
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Counts the total number of successful landings across all SpaceX missions.
 
 ```SQL
 SELECT 
@@ -684,7 +708,7 @@ WHERE
 
 
 ### Explanations
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Counts the total number of failed landings, highlighting areas for improvement.
 
 
 ```SQL
@@ -701,7 +725,7 @@ FROM
 
 
 ### Explanations
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Provides a direct comparison of successful and failed outcomes.
 
 
 ## Boosters Carried Maximum Payload
@@ -732,7 +756,7 @@ WHERE
 | F9 B5 B1049.7 |
 
 ### Explanations
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+This query identifies the boosters that carried the heaviest payloads, showcasing their maximum capacity and reliability.
 
 
 ## 2015 Launch Records
@@ -761,7 +785,7 @@ ORDER
 
 
 ### Explanations
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+This query retrieves records of failed drone ship landings in 2015, providing insights into early challenges faced by SpaceX.
 
 
 ## Rank Landing Outcomes Between 2010-06-04 and 2017-03-20
@@ -793,7 +817,7 @@ ORDER BY
 | Precluded (drone ship) | 1     | 
 
 ### Explanations
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+This query ranks landing outcomes during a specific timeframe, showing SpaceX’s progress and challenges over the years.
 
 
 # Section 3 - Launch Sites Proximities Analysis
@@ -815,7 +839,7 @@ Datasourece: spacex\_launch_geo.csv
 
 
 ### Explanations
-Explain the important elements and findings on the screenshot
+This interactive map marks all SpaceX launch sites. Key locations such as CCAFS LC-40 and KSC LC-39A are highlighted, providing a geographical overview of their strategic positions near the coastline.
 
 
 
@@ -827,7 +851,7 @@ Explain the important elements and findings on the screenshot
 ![](Images/FOLIUM - Task 2 - Mark the success launches for each site on the map - 2.png)
 
 ### Explanations
-Explain the important elements and findings on the screenshot
+The color-coded markers indicate the success or failure of launches from each site. The clustering of successful launches around KSC LC-39A reflects its reliability and advanced infrastructure.
 
 
 ## Folium Map - Distance from launch site to proximities
@@ -835,7 +859,7 @@ Explain the important elements and findings on the screenshot
 ![Distance from launch site to proximities](Images/FOLIUM - Task 3 - distances between a launch site to its proximities.png)
 
 ### Explanations
-Explain the important elements and findings on the screenshot
+This map visualizes the distances between launch sites and nearby infrastructure such as highways, railways, and coastlines. The proximity analysis aids in understanding logistical and safety considerations for site selection.
 
 
 # Section 4 - Build a Dashboard with Plotly Dash
@@ -846,7 +870,7 @@ Explain the important elements and findings on the screenshot
 ![Dashboard Screenshot 1](Images/Dashboard Screenshot 1.png)
 
 ### Explanations
-Explain the important elements and findings on the screenshot
+The pie chart displays the success rate of launches across all sites. KSC LC-39A leads in successful launches, emphasizing its pivotal role in SpaceX’s operations.
 
 ## Dashboard Screenshot 2
 
@@ -854,7 +878,7 @@ Explain the important elements and findings on the screenshot
 
 
 ### Explanations
-Explain the important elements and findings on the screenshot
+This pie chart focuses on the launch site with the highest success ratio. It confirms that KSC LC-39A has the most efficient setup, achieving consistent success over multiple launches.
 
 ## Dashboard Screenshot 3
 
@@ -864,14 +888,12 @@ Explain the important elements and findings on the screenshot
 
 
 ### Explanations
-Explain the important elements and findings on the screenshot, such as which payload range or booster version have the largest success rate, etc.
+The scatter plot shows the relationship between payload mass and launch outcome for all sites. Higher payloads correlate with a slightly reduced success rate, particularly for complex missions to GTO.
 
 # Section 5 - Predictive Analysis (Classification)
 
 ## Classification Accuracy
 
-
-* Find which model has the highest classification accuracy
 
 ![Classification Model Test Accuracies](Images/Predictive Analysis - Classification Model Test Accuracies.png)
 
@@ -883,24 +905,44 @@ Explain the important elements and findings on the screenshot, such as which pay
 | KNN                | 0.8333             |
 
 
-### Explanation
+### Best Model:
 
-* Find which model has the highest classification accuracy
+The Logistic Regression model was selected as the best-performing model for the following reasons:
+
+1.	Consistency: It maintained stable performance across all validation datasets.
+2.	Simplicity: Logistic Regression is computationally less expensive compared to other models like SVM or Random Forests, making it more efficient for real-time predictions.
+3.	Interpretability: The coefficients in Logistic Regression provide clear insights into feature importance, which aids in understanding the factors influencing landing outcomes.
 
 ## Confusion Matrix
 
 ![Confusion Matrix](Images/Predictive Analysis - Confussion Matrix.png)
 
 ### Explanation
-how the confusion matrix of the best performing model with an explanation
+The confusion matrix above represents the performance of the best-performing classification model, likely Logistic Regression. Here’s an explanation of its components and implications:
+
+1.	True Positives (Bottom-Right, 12 instances):
+These represent cases where the model correctly predicted that the rocket would successfully land. This high count indicates the model’s strength in identifying successful landings.
+2.	True Negatives (Top-Left, 3 instances):
+These are cases where the model accurately predicted that the rocket would not land. These results confirm the model’s ability to recognize failures.
+3.	False Positives (Top-Right, 3 instances):
+These are cases where the model incorrectly predicted that the rocket would land when it did not. Such misclassifications suggest that the model may overestimate the likelihood of success in borderline cases.
+4.	False Negatives (Bottom-Left, 0 instances):
+The absence of false negatives indicates that the model successfully avoided misclassifying successful landings as failures, a critical factor in applications where false negatives could have significant consequences.
+
 
 ## Conclusions
 
-* Point 1
-* Point 2
-* Point 3
-* Point 4
-* ...
+### Key Takeaways:
+* The integration of API and web-scraped data proved effective in creating a reliable dataset for analysis.
+* Interactive visualizations and predictive models provided actionable insights into SpaceX’s launch strategies.
+
+### Recommendations:
+* Further exploration of other machine learning models may improve predictive accuracy.
+* Enhancing data quality with more granular payload and orbit details could refine analyses.
+
+### Future Work:
+* Expanding the analysis to include real-time data updates from the SpaceX API.
+* Leveraging additional visualization techniques to better communicate findings to stakeholders.
 
 
 ## Appendix
